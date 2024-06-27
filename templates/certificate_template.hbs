@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Certificate</title>
+  <link href='https://fonts.googleapis.com/css?family=Poppins:400,700' rel='stylesheet'>
+  <style>
+    body {
+      font-family: Poppins, sans-serif;
+      padding: 0;
+      margin: 0;
+    }
+    .certificate {
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      background-image: url('{{base64ImageSrc options.backgroundImages.firstPage}}');
+      background-size: cover;
+    }
+    .certificate-content {
+      position: absolute;
+    }
+    .certificate-content h1 {
+      margin: 0;
+      position: absolute;
+      top: {{options.textPositions.title.top}};
+      left: {{options.textPositions.title.left}};
+      width: {{options.boxWidths.title}};
+      text-align: {{options.textAlignments.title}};
+      font-size: {{options.fontSizes.title}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+    }
+    .certificate-content .name {
+      font-size: {{options.fontSizes.name}};
+      font-weight: bold;
+      position: absolute;
+      top: {{options.textPositions.name.top}};
+      left: {{options.textPositions.name.left}};
+      width: {{options.boxWidths.name}};
+      text-align: {{options.textAlignments.name}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+    }
+    .certificate-content .role {
+      font-size: {{options.fontSizes.role}};
+      position: absolute;
+      top: {{options.textPositions.role.top}};
+      left: {{options.textPositions.role.left}};
+      width: {{options.boxWidths.role}};
+      text-align: {{options.textAlignments.role}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+    }
+    .certificate-content .qr-code {
+      position: absolute;
+      top: {{options.textPositions.qrCode.top}};
+      left: {{options.textPositions.qrCode.left}};
+      width: {{options.boxWidths.qrCode}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+    }
+    .certificate-content .verification-code {
+      font-size: {{options.fontSizes.verificationCode}};
+      font-style: italic;
+      position: absolute;
+      top: {{options.textPositions.verificationCode.top}};
+      left: {{options.textPositions.verificationCode.left}};
+      width: {{options.boxWidths.verificationCode}};
+      text-align: {{options.textAlignments.verificationCode}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+    }
+    .certificate-content .description {
+      font-size: {{options.fontSizes.description}};
+      position: absolute;
+      top: {{options.textPositions.description.top}};
+      left: {{options.textPositions.description.left}};
+      width: {{options.boxWidths.description}};
+      text-align: {{options.textAlignments.description}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+    }
+    .certificate-content .delivered-at {
+      font-size: {{options.fontSizes.deliveredAt}};
+      position: absolute;
+      top: {{options.textPositions.deliveredAt.top}};
+      left: {{options.textPositions.deliveredAt.left}};
+      width: {{options.boxWidths.deliveredAt}};
+      text-align: {{options.textAlignments.deliveredAt}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+    }
+    .second-page {
+      background-image: url('{{base64ImageSrc options.backgroundImages.secondPage}}');
+      background-size: cover;
+      height: 100vh;
+      width: 100vw;
+      page-break-before: always;
+    }
+    strong {
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+ {{!-- First page --}}
+  <div class="certificate">
+    <div class="certificate-content">
+      <h1>Certificate of Achievement</h1>
+      <p class="name">{{participant.name}}</p>
+      <p class="role">{{participant.role}}</p>
+      <div class="qr-code">
+        <img src="{{qrCodeDataUrl}}" alt="QR Code" style="width: 100px; height: 100px;">
+      </div>
+      <p class="verification-code">{{#if participant.code}}Verification Code: {{participant.code}}{{/if}}</p>
+      <p class="description">{{{safeString event.description}}}</p>
+      <p class="delivered-at">{{event.deliveredAt}}</p>
+    </div>
+  </div>
+
+  {{#if (eq options.numberOfPages 2)}}
+  <!-- Second Page: background image in base64 -->
+  <div class="second-page"></div>
+  {{/if}}
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "role": "Speaker",
+    "email": "john.doe@example.com",
+    "code": "ABC123",
+    "pdfPath": "/Users/franzmedrano/Documents/Workspace/dev/cert-mailer/certificates/John Doe - Speaker.pdf"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "role": "Attendee",
+    "email": "jane.smith@example.com",
+    "code": "XYZ456",
+    "pdfPath": "/Users/franzmedrano/Documents/Workspace/dev/cert-mailer/certificates/Jane Smith - Attendee.pdf"
+  }
+]

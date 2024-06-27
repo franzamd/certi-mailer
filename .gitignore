@@ -1,0 +1,17 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Generated certificates, inputs & outputs
+!certificates/
+!inputs/
+!outputs/
+
+# Log files
+logs/
+
+# IDE-specific
+.vscode/
+.idea/

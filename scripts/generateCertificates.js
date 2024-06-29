@@ -12,9 +12,11 @@ async function generateCertificates() {
   // Read participants and event data from JSON files
   const participantsFilePath = path.join(__dirname, '../data/participants.json');
   const eventFilePath = path.join(__dirname, '../data/event.json');
+  const certificateFilePath = path.join(__dirname, '../data/certificate.json');
 
   const participants = JSON.parse(fs.readFileSync(participantsFilePath, 'utf-8'));
   const event = JSON.parse(fs.readFileSync(eventFilePath, 'utf-8'));
+  const certificate = JSON.parse(fs.readFileSync(certificateFilePath, 'utf-8'));
 
   let sentCount = 0;
   let errorCount = 0;
@@ -24,7 +26,7 @@ async function generateCertificates() {
   for (const participant of participants) {
     try {
       sentCount++;
-      const pdfPath = await generateCertificate(participant, sentCount, event);
+      const pdfPath = await generateCertificate(participant, sentCount, event, certificate);
       logger.info(`✅ [${participant.id}] Certificate generated for ${participant.name} - ${participant.role}`);
 
       // Update participant with the PDF path

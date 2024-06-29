@@ -1,6 +1,19 @@
 {
-  "name": "Annual Tech Conference 2024",
+  "title": "Certificado",
+  "name": "Curso Internacional Control de Calidad en Pruebas Cualitativas",
+  "specialCase": "Curso Internacional",
   "qrURL": "https://www.example.com/event-details",
-  "description": "En calidad de <strong>ORGANIZADOR</strong> en el <strong>CURSO INTERNACIONAL DE MICOLOGIA</strong>, realizado en la Plataforma de Cursos Virtuales de COLABIOCLI, en fechas del 26 al 28 de mayo de 2024, con 25 horas académicas.",
-  "deliveredAt": "mayo de 2024"
+  "description": "En calidad de {{role}} del {{eventName}}. \nCarga Horaria {{hours}} horas académicas. \nDictado por {{teacher}}",
+  "teacher": "BEATRIZ VARELA (URUGUAY)",
+  "teacherGender": "female",
+  "hours": 18,
+  "deliveredAt": "8 y 9 mayo de 2024",
+  "program": [
+    "Principios básicos del control de calidad en pruebas cuantitativas.",
+    "Selección de los materiales de control de calidad interno.",
+    "Fuentes de especificaciones de desempeño analítico.",
+    "Cartas de control (gráfico de Levey Jennings), reglas y algortimos de Westgard, métrica seis sigma, gráficos de función de poder y correlación con la métrica sigma.",
+    "Diseño y establecimiento del procedimiento de control de calidad interno.",
+    "Interpretación de los resultados de control de calidad interno."
+  ]
 }

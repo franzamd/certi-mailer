@@ -27,7 +27,53 @@ Handlebars.registerHelper('safeString', function (html) {
   return new Handlebars.SafeString(html);
 });
 
-async function generateCertificate(participant, certificateCount, event, options = config) {
+Handlebars.registerHelper('upper', function (text) {
+  return text.toUpperCase();
+});
+
+Handlebars.registerHelper('formatDescription', function (description, role, eventName, teacher, hours) {
+  const formattedRole = role ? role.toUpperCase() : '';
+  const formattedEventName = eventName ? eventName.toUpperCase() : '';
+  const formattedTeacher = teacher ? teacher.toUpperCase() : '';
+  const formattedDescription = description
+    .replace('{{role}}', `<strong>${formattedRole}</strong>`)
+    .replace('{{eventName}}', `<strong>${formattedEventName}</strong>`)
+    .replace('{{teacher}}', `<strong>${formattedTeacher}</strong>`)
+    .replace('{{hours}}', hours)
+    .replace(/\n/g, '<br>');
+  return new Handlebars.SafeString(formattedDescription);
+});
+
+Handlebars.registerHelper('splitEventName', function (eventName, specialCase) {
+  let splitIndex = eventName.indexOf(specialCase);
+
+  if (splitIndex > -1) {
+    // Si el caso especial está presente, asegurarse de que esté en la primera línea
+    const firstLine = specialCase;
+    const secondLine = eventName.substring(splitIndex + specialCase.length).trim();
+    return new Handlebars.SafeString(`${firstLine}<br>${secondLine}`);
+  } else {
+    // Si el caso especial no está presente, usar la lógica original
+    const splitWords = ['de', 'en'];
+    splitWords.forEach(word => {
+      const index = eventName.indexOf(word);
+      if (index > -1 && (splitIndex === -1 || index < splitIndex)) {
+        splitIndex = index;
+      }
+    });
+
+    if (splitIndex > -1) {
+      const firstLine = eventName.substring(0, splitIndex).trim();
+      const secondLine = eventName.substring(splitIndex).trim();
+      return new Handlebars.SafeString(`${firstLine}<br>${secondLine}`);
+    } else {
+      // Si no se encuentra ninguna palabra clave, devolver el texto original
+      return eventName;
+    }
+  }
+});
+
+async function generateCertificate(participant, certificateCount, event, certificate, options = config) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -43,6 +89,7 @@ async function generateCertificate(participant, certificateCount, event, options
     qrCodeDataUrl,
     participant,
     event,
+    certificate,
     options
   });
 

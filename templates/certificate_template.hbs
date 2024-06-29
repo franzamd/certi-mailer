@@ -3,22 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <title>Certificate</title>
-  <link href='https://fonts.googleapis.com/css?family=Poppins:400,700' rel='stylesheet'>
+  <link href="{{options.fonts.url}}" rel="stylesheet">
   <style>
     body {
-      font-family: Poppins, sans-serif;
+      font-family: {{options.fonts.family}};
       padding: 0;
       margin: 0;
     }
-    .certificate {
-      height: 100vh;
-      width: 100vw;
+    .qr {
+      width: 100px;
+      height: 100px;
+    }
+    .page-container {
       position: relative;
-      background-image: url('{{base64ImageSrc options.backgroundImages.firstPage}}');
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .certificate {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url('{{#if options.options.showFirstPageBg}}{{base64ImageSrc options.backgroundImages.firstPage}}{{/if}}');
       background-size: cover;
     }
     .certificate-content {
       position: absolute;
+    }
+    .certificate-content .confer-title {
+      margin: 0;
+      position: absolute;
+      top: {{options.textPositions.conferTitle.top}};
+      left: {{options.textPositions.conferTitle.left}};
+      width: {{options.boxWidths.conferTitle}};
+      text-align: {{options.textAlignments.conferTitle}};
+      font-size: {{options.fontSizes.conferTitle}};
+      color: {{options.colors.conferTitle}};
+      line-height: {{options.lineHeights.conferTitle}};
+      letter-spacing: {{options.letterSpacings.conferTitle}};
+      font-weight: {{options.fontWeights.conferTitle}};
+      font-style: {{options.fontStyles.conferTitle}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+      text-transform: {{options.textCase.conferTitle}};
     }
     .certificate-content h1 {
       margin: 0;
@@ -28,7 +56,13 @@
       width: {{options.boxWidths.title}};
       text-align: {{options.textAlignments.title}};
       font-size: {{options.fontSizes.title}};
+      color: {{options.colors.title}};
+      line-height: {{options.lineHeights.title}};
+      letter-spacing: {{options.letterSpacings.title}};
+      font-weight: {{options.fontWeights.title}};
+      font-style: {{options.fontStyles.title}};
       {{#if options.showBorders}}border: 2px solid red;{{/if}}
+      text-transform: {{options.textCase.title}};
     }
     .certificate-content .name {
       font-size: {{options.fontSizes.name}};
@@ -38,7 +72,11 @@
       left: {{options.textPositions.name.left}};
       width: {{options.boxWidths.name}};
       text-align: {{options.textAlignments.name}};
+      line-height: {{options.lineHeights.name}};
+      font-weight: {{options.fontWeights.name}};
+      font-style: {{options.fontStyles.name}};
       {{#if options.showBorders}}border: 2px solid red;{{/if}}
+      text-transform: {{options.textCase.name}};
     }
     .certificate-content .role {
       font-size: {{options.fontSizes.role}};
@@ -47,6 +85,9 @@
       left: {{options.textPositions.role.left}};
       width: {{options.boxWidths.role}};
       text-align: {{options.textAlignments.role}};
+      line-height: {{options.lineHeights.role}};
+      font-weight: {{options.fontWeights.role}};
+      font-style: {{options.fontStyles.role}};
       {{#if options.showBorders}}border: 2px solid red;{{/if}}
     }
     .certificate-content .qr-code {
@@ -58,12 +99,15 @@
     }
     .certificate-content .verification-code {
       font-size: {{options.fontSizes.verificationCode}};
-      font-style: italic;
       position: absolute;
       top: {{options.textPositions.verificationCode.top}};
       left: {{options.textPositions.verificationCode.left}};
       width: {{options.boxWidths.verificationCode}};
       text-align: {{options.textAlignments.verificationCode}};
+      color: {{options.colors.verificationCode}};
+      line-height: {{options.lineHeights.verificationCode}};
+      font-weight: {{options.fontWeights.verificationCode}};
+      font-style: {{options.fontStyles.verificationCode}};
       {{#if options.showBorders}}border: 2px solid red;{{/if}}
     }
     .certificate-content .description {
@@ -73,6 +117,9 @@
       left: {{options.textPositions.description.left}};
       width: {{options.boxWidths.description}};
       text-align: {{options.textAlignments.description}};
+      line-height: {{options.lineHeights.description}};
+      font-weight: {{options.fontWeights.description}};
+      font-style: {{options.fontStyles.description}};
       {{#if options.showBorders}}border: 2px solid red;{{/if}}
     }
     .certificate-content .delivered-at {
@@ -82,14 +129,81 @@
       left: {{options.textPositions.deliveredAt.left}};
       width: {{options.boxWidths.deliveredAt}};
       text-align: {{options.textAlignments.deliveredAt}};
+      line-height: {{options.lineHeights.deliveredAt}};
+      font-weight: {{options.fontWeights.deliveredAt}};
+      font-style: {{options.fontStyles.deliveredAt}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}};
+    }
+    .certificate-content .label-a {
+      margin: 0;
+      position: absolute;
+      top: {{options.textPositions.labelA.top}};
+      left: {{options.textPositions.labelA.left}};
+      width: {{options.boxWidths.labelA}};
+      text-align: {{options.textAlignments.labelA}};
+      font-size: {{options.fontSizes.labelA}};
+      color: {{options.colors.labelA}};
+      line-height: {{options.lineHeights.labelA}};
+      letter-spacing: {{options.letterSpacings.labelA}};
+      font-weight: {{options.fontWeights.labelA}};
+      font-style: {{options.fontStyles.labelA}};
+      {{#if options.showBorders}}border: 2px solid red;{{/if}}
+      text-transform: {{options.textCase.labelA}};
+    }
+    .certificate-content .underline {
+      position: absolute;
+      top: {{options.textPositions.underline.top}};
+      left: {{options.textPositions.underline.left}};
+      width: {{options.boxWidths.underline}};
+      height: {{options.underlineHeight}};
+      background-color: {{options.colors.underline}};
       {{#if options.showBorders}}border: 2px solid red;{{/if}}
     }
     .second-page {
-      background-image: url('{{base64ImageSrc options.backgroundImages.secondPage}}');
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url('{{#if options.options.showSecondPageBg}}{{base64ImageSrc options.backgroundImages.secondPage}}{{/if}}');
       background-size: cover;
-      height: 100vh;
-      width: 100vw;
       page-break-before: always;
+    }
+    .second-page .section {
+      position: absolute;
+      width: 100%;
+    }
+    .second-page .section.title {
+      top: 50px;
+      width: 100%;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+    .second-page .section.subtitle {
+      top: 120px;
+      width: 100%;
+      padding-left: 100px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .second-page .section.program {
+      top: 170px;
+      width: 100%;
+      padding: 0 100px;
+      font-size: 16px;
+      text-align: left;
+      position: relative;
+      box-sizing: border-box; 
+      max-width: 100%; 
+    }
+    .second-page .section.program ul {
+      overflow-wrap: break-word;
+    }
+    .second-page .section.program li {
+      margin-bottom: 10px;
     }
     strong {
       font-weight: 700;
@@ -97,24 +211,45 @@
   </style>
 </head>
 <body>
- {{!-- First page --}}
-  <div class="certificate">
-    <div class="certificate-content">
-      <h1>Certificate of Achievement</h1>
-      <p class="name">{{participant.name}}</p>
-      <p class="role">{{participant.role}}</p>
-      <div class="qr-code">
-        <img src="{{qrCodeDataUrl}}" alt="QR Code" style="width: 100px; height: 100px;">
+  {{!-- First page --}}
+  <div class="page-container">
+    <div class="certificate">
+      <div class="certificate-content">
+        <p class="confer-title">{{certificate.conferTitle}}</p>
+        <h1>{{event.title}}</h1>
+        <p class="label-a">{{certificate.labelA}}:</p>
+        <div class="underline"></div>
+        <p class="name">{{participant.name}}</p>
+        <div class="qr-code">
+          <img src="{{qrCodeDataUrl}}" alt="QR Code" class="qr">
+        </div>
+        <p class="verification-code">{{#if participant.code}}{{certificate.verificationCode}}: {{participant.code}}{{/if}}</p>
+        <p class="description">{{{safeString (formatDescription event.description participant.role event.name event.teacher event.hours)}}}</p>
+        <p class="delivered-at">{{event.deliveredAt}}</p>
       </div>
-      <p class="verification-code">{{#if participant.code}}Verification Code: {{participant.code}}{{/if}}</p>
-      <p class="description">{{{safeString event.description}}}</p>
-      <p class="delivered-at">{{event.deliveredAt}}</p>
     </div>
   </div>
 
   {{#if (eq options.numberOfPages 2)}}
   <!-- Second Page: background image in base64 -->
-  <div class="second-page"></div>
+  <div class="page-container">
+    <div class="second-page">
+        <div class="section title">
+          {{splitEventName event.name event.specialCase}}
+        </div>
+      <div class="section subtitle">
+         <strong>{{certificate.teacherGender}}: {{event.teacher}}</strong>
+      </div>
+      <div class="section program">
+        <strong>{{certificate.programTitle}}:</strong>
+        <ul>
+          {{#each event.program}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
   {{/if}}
 </body>
 </html>

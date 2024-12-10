@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "DRA. LISANDRA MORALES JURADO",
+    "email": "limorju@gmail.com",
+    "role": "participante",
+    "description": "BO",
+    "code": "c9d0e1f2"
+  },
+  {
+    "id": 2,
+    "name": "DRA. LISANDRA MORALES JURADO",
+    "email": "limorju@gmail.com",
+    "role": "organizador",
+    "description": "BO",
+    "code": "9A8B7C6D"
+  }
+]

@@ -1,20 +1,20 @@
 export const config = {
   textPositions: {
-    conferTitle: { top: '230px', left: '250px' },
-    title: { top: '260px', left: '250px' },
-    name: { top: '295px', left: '250px' },
+    conferTitle: { top: '230px', left: '280px' },
+    title: { top: '260px', left: '280px' },
+    name: { top: '340px', left: '170px' },
     role: { top: '150px', left: '300px' },
-    qrCode: { top: '520px', left: '950px' },
-    verificationCode: { top: '610px', left: '950px' },
-    description: { top: '410px', left: '150px' },
-    date: { top: '500px', left: '150px' },
-    labelA: { top: '370px', left: '120px' },
-    underline: { top: '400px', left: '150px' }
+    qrCode: { top: '600px', left: '60px' },
+    verificationCode: { top: '700px', left: '60px' },
+    description: { top: '410px', left: '170px' },
+    date: { top: '525px', left: '170px' },
+    labelA: { top: '370px', left: '130px' },
+    underline: { top: '400px', left: '170px' }
   },
   boxWidths: {
     conferTitle: '550px',
     title: '550px',
-    name: '700px',
+    name: '780px',
     role: '400px',
     qrCode: '100px',
     verificationCode: '100px',
@@ -26,7 +26,7 @@ export const config = {
   fontSizes: {
     conferTitle: '18px',
     title: '66px',
-    name: '28px',
+    name: '26px',
     role: '18px',
     verificationCode: '11px',
     description: '18px',
@@ -53,7 +53,7 @@ export const config = {
     title: '#18273D',
     verificationCode: '#000',
     labelA: '#000',
-    underline: '#BDBDBD'
+    underline: '#000'
   },
   fontWeights: {
     conferTitle: '600',
@@ -75,7 +75,7 @@ export const config = {
     date: 'normal',
     labelA: 'normal'
   },
-  underlineHeight: '1px',
+  underlineHeight: '2px',
   showBorders: false,
   numberOfPages: 1,
   includeNumbering: false,
@@ -91,7 +91,7 @@ export const config = {
     labelA: 'left'
   },
   fonts: {
-    family: 'SF Pro Text, sans-serif',
+    family: 'Poppins, sans-serif',
     url: 'https://fonts.googleapis.com/css?family=Poppins:400,600,700,800'
   },
   textCase: {
@@ -102,10 +102,10 @@ export const config = {
   },
   options: {
     showFirstPageBg: true,
-    showSecondPageBg: true
+    showSecondPageBg: false
   },
   backgroundImages: {
-    firstPage: 'assets/first_page_bg.jpg',
+    firstPage: 'assets/first_page_bg.png',
     secondPage: 'assets/second_page_bg.png'
   },
   emailTemplate: {
@@ -118,7 +118,7 @@ export const config = {
     }
   },
   qrOptions: {
-    qrType: 'event',
+    qrType: 'participant',
     qrTypes: ['event', 'participant'],
   }
 };

@@ -2,10 +2,10 @@ export const config = {
   textPositions: {
     conferTitle: { top: '230px', left: '250px' },
     title: { top: '260px', left: '250px' },
-    name: { top: '295px', left: '250px' },
+    name: { top: '340px', left: '130px' },
     role: { top: '150px', left: '300px' },
-    qrCode: { top: '520px', left: '950px' },
-    verificationCode: { top: '610px', left: '950px' },
+    qrCode: { top: '580px', left: '80px' },
+    verificationCode: { top: '670px', left: '80px' },
     description: { top: '410px', left: '150px' },
     date: { top: '500px', left: '150px' },
     labelA: { top: '370px', left: '120px' },
@@ -14,7 +14,7 @@ export const config = {
   boxWidths: {
     conferTitle: '550px',
     title: '550px',
-    name: '700px',
+    name: '830px',
     role: '400px',
     qrCode: '100px',
     verificationCode: '100px',
@@ -105,7 +105,7 @@ export const config = {
     showSecondPageBg: true
   },
   backgroundImages: {
-    firstPage: 'assets/first_page_bg.jpg',
+    firstPage: 'assets/first_page_bg.png',
     secondPage: 'assets/second_page_bg.png'
   },
   emailTemplate: {

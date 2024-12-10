@@ -1,12 +1,13 @@
-const minimist = require('minimist');
-const args = minimist(process.argv.slice(2));
-const path = require('path');
-const fs = require('fs');
-const XLSX = require('xlsx');
+import minimist from 'minimist';
+import path from 'path';
+import fs from 'fs';
+import XLSX from 'xlsx';
+import logger from '../utils/logger.js';
 
-const outputFileName = args.output || 'exported_participants.csv';
-const outputFilePath = path.join(__dirname, '..', 'outputs', outputFileName);
-const inputFilePath = path.join(__dirname, '..', 'outputs', 'participants.json');
+const args = minimist(process.argv.slice(2));
+const outputFileName = typeof args.output === 'string' ? args.output : 'exported_participants.csv';
+const outputFilePath = path.join(path.resolve(), 'outputs', outputFileName);
+const inputFilePath = path.join(path.resolve(), 'outputs', 'participants.json');
 
 function readJSON(filePath) {
   const data = fs.readFileSync(filePath, 'utf8');
@@ -14,18 +15,20 @@ function readJSON(filePath) {
 }
 
 function writeCSV(filePath, data) {
-  const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-  const csvWriter = createCsvWriter({
-    path: filePath,
-    header: [
-      { id: 'id', title: 'ID' },
-      { id: 'name', title: 'Name' },
-      { id: 'role', title: 'Role' },
-      { id: 'email', title: 'Email' },
-      { id: 'code', title: 'Code' },
-    ],
-  });
-  return csvWriter.writeRecords(data);
+  const header = [
+    { id: 'id', title: 'ID' },
+    { id: 'name', title: 'Name' },
+    { id: 'role', title: 'Role' },
+    { id: 'email', title: 'Email' },
+    { id: 'code', title: 'Code' },
+  ];
+
+  const csvContent = [
+    header.map(item => item.title).join(','),
+    ...data.map(row => header.map(item => row[item.id]).join(','))
+  ].join('\n');
+
+  fs.writeFileSync(filePath, csvContent);
 }
 
 function writeExcel(filePath, data) {
@@ -39,13 +42,13 @@ async function exportData() {
   const data = readJSON(inputFilePath);
 
   if (outputFilePath.endsWith('.csv')) {
-    await writeCSV(outputFilePath, data);
+    writeCSV(outputFilePath, data);
   } else if (outputFilePath.endsWith('.xlsx')) {
     writeExcel(outputFilePath, data);
   } else {
     throw new Error('Unsupported file format');
   }
-  console.log(`Data has been exported and saved to ${outputFilePath}`);
+  logger.info(`✅ Data has been exported and saved to ${outputFilePath}`);
 }
 
-exportData().catch(console.error);
+exportData().catch(error => logger.error(`❌ Error exporting data: ${error.message}`));

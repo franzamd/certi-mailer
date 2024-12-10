@@ -25,19 +25,25 @@ Certi Mailer is a comprehensive solution for event organizers who need to manage
 
 You can use the following npm scripts to run various tasks in the project:
 
-- `start`: Runs the main script to process all actions.
+- `start`: Runs the main script (execute generate-certificates and send-certificates).
 
 ```bash
   npm start
 ```
 
-- `send-certificates`: Generates certificates for participants.
+- `generate-certificates`: Generates certificates (.pdf) for participants and save in certificates folder.
+
+```bash
+npm run generate-certificates
+```
+
+- `send-certificates`: Send certificates for participants vía email.
 
 ```bash
 npm run send-certificates
 ```
 
-- `convert-data`: Converts data from one format to another.
+- `convert-data`: Converts data from one format to another (.csv o .xlsx).
 
 ```bash
 npm run convert-data -- --input <input-file> --output <output-file>

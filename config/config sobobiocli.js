@@ -1,45 +1,45 @@
 export const config = {
   textPositions: {
-    conferTitle: { top: '230px', left: '250px' },
-    title: { top: '260px', left: '250px' },
-    name: { top: '295px', left: '250px' },
+    conferTitle: { top: '200px', left: '465px' },
+    title: { top: '245px', left: '300px' },
+    name: { top: '370px', left: '170px' },
     role: { top: '150px', left: '300px' },
-    qrCode: { top: '520px', left: '950px' },
-    verificationCode: { top: '610px', left: '950px' },
-    description: { top: '410px', left: '150px' },
-    date: { top: '500px', left: '150px' },
-    labelA: { top: '370px', left: '120px' },
-    underline: { top: '400px', left: '150px' }
+    qrCode: { top: '650px', left: '940px' },
+    verificationCode: { top: '745px', left: '940px' },
+    description: { top: '430px', left: '170px' },
+    date: { top: '550px', left: '170px' },
+    labelA: { top: '400px', left: '130px' },
+    underline: { top: '425px', left: '170px' }
   },
   boxWidths: {
-    conferTitle: '550px',
-    title: '550px',
-    name: '700px',
+    conferTitle: '300px',
+    title: '400px',
+    name: '780px',
     role: '400px',
     qrCode: '100px',
     verificationCode: '100px',
     description: '780px',
     date: '780px',
     labelA: '28px',
-    underline: '780px'
+    underline: '800px'
   },
   fontSizes: {
     conferTitle: '18px',
     title: '66px',
-    name: '28px',
+    name: '24px',
     role: '18px',
     verificationCode: '11px',
-    description: '18px',
-    date: '18px',
+    description: '16px',
+    date: '14px',
     labelA: '28px'
   },
   lineHeights: {
     conferTitle: '1',
-    title: '1',
+    title: '1.1',
     name: '1.3',
     role: '1.2',
     verificationCode: '1.2',
-    description: '1.6',
+    description: '1.5',
     date: '1.2',
     labelA: '1.2'
   },
@@ -51,9 +51,9 @@ export const config = {
   colors: {
     conferTitle: '#18273D',
     title: '#18273D',
-    verificationCode: '#000',
+    verificationCode: '#fff',
     labelA: '#000',
-    underline: '#BDBDBD'
+    underline: '#D4D5D6'
   },
   fontWeights: {
     conferTitle: '600',
@@ -75,24 +75,24 @@ export const config = {
     date: 'normal',
     labelA: 'normal'
   },
-  underlineHeight: '1px',
+  underlineHeight: '2px',
   showBorders: false,
-  numberOfPages: 1,
+  numberOfPages: 2,
   includeNumbering: false,
   numberingFormat: '{number} - {name} - {role}',
   textAlignments: {
-    conferTitle: 'center',
+    conferTitle: 'left',
     title: 'center',
     name: 'center',
     role: 'center',
     verificationCode: 'center',
-    description: 'justify',
+    description: 'left',
     date: 'center',
     labelA: 'left'
   },
   fonts: {
-    family: 'SF Pro Text, sans-serif',
-    url: 'https://fonts.googleapis.com/css?family=Poppins:400,600,700,800'
+    family: 'Montserrat, sans-serif',
+    url: 'https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800'
   },
   textCase: {
     conferTitle: 'none',
@@ -102,10 +102,10 @@ export const config = {
   },
   options: {
     showFirstPageBg: true,
-    showSecondPageBg: true
+    showSecondPageBg: false
   },
   backgroundImages: {
-    firstPage: 'assets/first_page_bg.jpg',
+    firstPage: 'assets/first_page_bg.png',
     secondPage: 'assets/second_page_bg.png'
   },
   emailTemplate: {
@@ -118,7 +118,7 @@ export const config = {
     }
   },
   qrOptions: {
-    qrType: 'event',
+    qrType: 'participant',
     qrTypes: ['event', 'participant'],
   }
 };

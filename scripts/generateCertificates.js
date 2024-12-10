@@ -27,14 +27,15 @@ async function generateCertificates() {
     try {
       sentCount++;
       const pdfPath = await generateCertificate(participant, sentCount, event, certificate);
-      logger.info(`✅ [${participant.id}] Certificate generated for ${participant.name} - ${participant.role}`);
+      const descriptionFormatted = eval(participant.description) ? `- ${participant.description}` : ''
+      logger.info(`✅ Certificate generated for ${participant.name} - ${participant.role} ${descriptionFormatted}`);
 
       // Update participant with the PDF path
       participant.pdfPath = pdfPath;
     } catch (error) {
       errorCount++;
       errorIds.push(participant.id);
-      logger.error(`❌ [${participant.id}] Failed to generate certificate for ${participant.name} - ${participant.role}. Error: ${error.message}`);
+      logger.error(`❌ Failed to generate certificate for ${participant.name} - ${participant.role}. Error: ${error.message}`);
     }
   }
 
@@ -42,7 +43,7 @@ async function generateCertificates() {
   fs.writeFileSync(participantsFilePath, JSON.stringify(participants, null, 2));
 
   if (errorCount > 0) {
-    logger.error(`Total ${sentCount} Certificates processed, ${errorCount} with errors. IDs with errors: ${errorIds.join(', ')}`);
+    logger.info(`Total ${sentCount} Certificates processed, ${errorCount} with errors. IDs with errors: ${errorIds.join(', ')}`);
   } else {
     logger.info(`Total ${sentCount} Certificates generated successfully!`);
   }

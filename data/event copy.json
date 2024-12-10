@@ -1,0 +1,12 @@
+{
+  "title": "Certificado",
+  "name": "Webinar Importancia del Laboratorio en los Ensayos Clínicos",
+  "specialCase": "",
+  "qrURL": "https://colabiocli.com/certifacion-importancia-laboraotiro-ensayo-clinico",
+  "description": "En calidad de {{role}} en el {{eventName}}, realido el 30 de octubre de 2024, con una duración de {{hours}} horas académicas.",
+  "teacher": "",
+  "teacherGender": "",
+  "hours": 2,
+  "date": "octubre de 2024",
+  "program": []
+}

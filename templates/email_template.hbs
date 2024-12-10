@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: {{options.body.family}};
+      font-size: {{options.body.size}};
+      font-weight: {{options.body.weight}};
+      font-style: {{options.body.style}};
+      color: {{options.body.color}};
+    }
+    .header {
+      background-color: #f2f2f2;
+      padding: 10px;
+      text-align: center;
+    }
+    .content {
+      padding: 20px;
+    }
+    .footer {
+      background-color: #f2f2f2;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>{{headerTitle}}</h1>
+  </div>
+  <div class="content">
+    <p>{{salutation}} <strong>{{participantName}}</strong>,</p>
+    <p>{{bodyText}}</p>
+    <p><strong>{{labels.event}}:</strong> {{eventName}}</p>
+    <p><strong>{{labels.date}}:</strong> {{eventDate}}</p>
+    <p><strong>{{labels.eventMode}}:</strong> {{eventMode}}</p>
+    <p>{{linkText}} <a href="{{linkUrl}}">{{entityName}}</a>.</p>
+  </div>
+  <div class="footer">
+    <p>{{labels.regards}},</p>
+    <p>{{sender}}</p>
+    <p>{{senderRole}}</p>
+  </div>
+</body>
+</html>

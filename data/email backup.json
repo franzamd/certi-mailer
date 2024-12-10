@@ -1,0 +1,9 @@
+{
+  "subject": "Your Certificate {{eventName}}",
+  "bodyText": "Thank you for participating in our event. Please find your certificate attached.",
+  "headerTitle": "Event Certificate",
+  "greeting": "Dear {{name}},",
+  "eventLocation": "Online",
+  "sender": "John Doe",
+  "senderRole": "Event Coordinator"
+}

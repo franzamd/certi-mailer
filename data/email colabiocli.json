@@ -4,7 +4,7 @@
   "salutation": "Estimado(a)",
   "eventMode": "Online",
   "sender": "Franz Medrano",
-  "senderRole": "",
+  "senderRole": "Informático {{entityName}}",
   "labels": {
     "event": "Evento",
     "date": "Fecha",

@@ -123,15 +123,15 @@
       {{#if options.showBorders}}border: 2px solid red;{{/if}}
     }
     .certificate-content .delivered-at {
-      font-size: {{options.fontSizes.deliveredAt}};
+      font-size: {{options.fontSizes.date}};
       position: absolute;
-      top: {{options.textPositions.deliveredAt.top}};
-      left: {{options.textPositions.deliveredAt.left}};
-      width: {{options.boxWidths.deliveredAt}};
-      text-align: {{options.textAlignments.deliveredAt}};
-      line-height: {{options.lineHeights.deliveredAt}};
-      font-weight: {{options.fontWeights.deliveredAt}};
-      font-style: {{options.fontStyles.deliveredAt}};
+      top: {{options.textPositions.date.top}};
+      left: {{options.textPositions.date.left}};
+      width: {{options.boxWidths.date}};
+      text-align: {{options.textAlignments.date}};
+      line-height: {{options.lineHeights.date}};
+      font-weight: {{options.fontWeights.date}};
+      font-style: {{options.fontStyles.date}};
       {{#if options.showBorders}}border: 2px solid red;{{/if}};
     }
     .certificate-content .label-a {
@@ -215,17 +215,17 @@
   <div class="page-container">
     <div class="certificate">
       <div class="certificate-content">
-        <p class="confer-title">{{certificate.conferTitle}}</p>
-        <h1>{{event.title}}</h1>
-        <p class="label-a">{{certificate.labelA}}:</p>
-        <div class="underline"></div>
+        {{!-- <p class="confer-title">{{certificate.conferTitle}}</p> --}}
+        {{!-- <h1>{{event.title}}</h1> --}}
+        {{!-- <p class="label-a">{{certificate.labelA}}:</p>
+        <div class="underline"></div> --}}
         <p class="name">{{participant.name}}</p>
         <div class="qr-code">
           <img src="{{qrCodeDataUrl}}" alt="QR Code" class="qr">
         </div>
         <p class="verification-code">{{#if participant.code}}{{certificate.verificationCode}}: {{participant.code}}{{/if}}</p>
         <p class="description">{{{safeString (formatDescription event.description participant.role event.name event.teacher event.hours)}}}</p>
-        <p class="delivered-at">{{event.deliveredAt}}</p>
+        <p class="delivered-at">{{event.date}}</p>
       </div>
     </div>
   </div>

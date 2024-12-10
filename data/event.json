@@ -1,19 +1,12 @@
 {
-  "title": "Certificado",
-  "name": "Curso Internacional Control de Calidad en Pruebas Cualitativas",
-  "specialCase": "Curso Internacional",
-  "qrURL": "https://www.example.com/event-details",
-  "description": "En calidad de {{role}} del {{eventName}}. \nCarga Horaria {{hours}} horas académicas. \nDictado por {{teacher}}",
-  "teacher": "BEATRIZ VARELA (URUGUAY)",
-  "teacherGender": "female",
-  "hours": 18,
-  "deliveredAt": "8 y 9 mayo de 2024",
-  "program": [
-    "Principios básicos del control de calidad en pruebas cuantitativas.",
-    "Selección de los materiales de control de calidad interno.",
-    "Fuentes de especificaciones de desempeño analítico.",
-    "Cartas de control (gráfico de Levey Jennings), reglas y algortimos de Westgard, métrica seis sigma, gráficos de función de poder y correlación con la métrica sigma.",
-    "Diseño y establecimiento del procedimiento de control de calidad interno.",
-    "Interpretación de los resultados de control de calidad interno."
-  ]
+  "title": "",
+  "name": "1er. Foro Latinoamericano de Jóvenes Profesionales del Laboratorio Clínico",
+  "specialCase": "",
+  "qrURL": "https://colabiocli.com/certificacion-primer-foro-jovenes-laboratorio-clinico",
+  "description": "",
+  "teacher": "",
+  "teacherGender": "",
+  "hours": "",
+  "date": "octubre de 2024",
+  "program": []
 }

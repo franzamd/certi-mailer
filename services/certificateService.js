@@ -4,6 +4,7 @@ import path from 'path';
 import QRCode from 'qrcode';
 import Handlebars from 'handlebars';
 import { fileURLToPath } from 'url';
+
 import { config } from '../config/config.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -48,12 +49,12 @@ Handlebars.registerHelper('splitEventName', function (eventName, specialCase) {
   let splitIndex = eventName.indexOf(specialCase);
 
   if (splitIndex > -1) {
-    // Si el caso especial está presente, asegurarse de que esté en la primera línea
+    // If the case special is present then make sure it is on the first line
     const firstLine = specialCase;
     const secondLine = eventName.substring(splitIndex + specialCase.length).trim();
     return new Handlebars.SafeString(`${firstLine}<br>${secondLine}`);
   } else {
-    // Si el caso especial no está presente, usar la lógica original
+    // If the case special is not present then original logic
     const splitWords = ['de', 'en'];
     splitWords.forEach(word => {
       const index = eventName.indexOf(word);
@@ -67,23 +68,61 @@ Handlebars.registerHelper('splitEventName', function (eventName, specialCase) {
       const secondLine = eventName.substring(splitIndex).trim();
       return new Handlebars.SafeString(`${firstLine}<br>${secondLine}`);
     } else {
-      // Si no se encuentra ninguna palabra clave, devolver el texto original
+      // If no found keyword key then return text original
       return eventName;
     }
   }
 });
 
-async function generateCertificate(participant, certificateCount, event, certificate, options = config) {
+async function generateCertificate(
+  participant,
+  certificateCount,
+  event,
+  certificate,
+  options = config,
+) {
+  const qrOptions = options.qrOptions;
+  const qrType = qrOptions.qrType;
+
+  if (!qrOptions.qrTypes.includes(qrType)) {
+    throw new Error(`Invalid QR type: ${qrType}`);
+  }
+
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
+  // Read the Handlebars template
   const templatePath = path.join(__dirname, '../templates/certificate_template.hbs');
   const templateSource = fs.readFileSync(templatePath, 'utf-8');
   const template = Handlebars.compile(templateSource);
 
   // Generate URL for QR
-  const qrURLWithCode = `${event.qrURL}?participantCode=${participant.code}`;
-  const qrCodeDataUrl = await QRCode.toDataURL(qrURLWithCode);
+  let qrCodeDataUrl;
+  if (qrType === 'event') {
+    const qrURLWithCode = `${event.qrURL}?code=${participant.code}`;
+    qrCodeDataUrl = await QRCode.toDataURL(qrURLWithCode);
+  } else if (qrType === 'participant') {
+    const participantInfo = `
+      Evento:
+      ${event.name}
+      ------------------------------
+      Fecha:
+      ${event.date}
+      ------------------------------
+      Nombres y Apellidos:
+      ${participant.name}
+      ------------------------------
+      Rol:
+      ${participant.role}
+      ------------------------------
+      Horas Académicas:
+      ${event.hours}
+      ------------------------------
+      Código de Verificación:
+      ${participant.code}
+    `;
+    qrCodeDataUrl = await QRCode.toDataURL(participantInfo);
+  }
 
   const htmlTemplate = template({
     qrCodeDataUrl,
@@ -96,7 +135,8 @@ async function generateCertificate(participant, certificateCount, event, certifi
   await page.setContent(htmlTemplate);
 
   // Config output pdf 
-  let pdfFileName = `${participant.name} - ${participant.role}.pdf`;
+  const descriptionFormatted = eval(participant.description) ? `- ${participant.description}` : ''
+  let pdfFileName = `${participant.name} - ${participant.role} ${descriptionFormatted}.pdf`;
   if (options.includeNumbering) {
     pdfFileName = options.numberingFormat
       .replace('{number}', certificateCount)

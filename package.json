@@ -8,8 +8,10 @@
     "start": "node scripts/main.js --all",
     "generate-certificates": "node --env-file=.env scripts/main.js --generate",
     "send-certificates": "node --env-file=.env scripts/main.js --send",
-    "convert-data": "node scripts/convert.js --input",
+    "convert-data": "node scripts/convert.js --input=participants.csv --separator=';'",
     "export-data": "node scripts/export.js --output",
+    "generate-table": "node scripts/generateTable.js --input=data/participants.json",
+    "generate-participants-json": "node scripts/generateParticipantsJson.js --input=data/participants.json",
     "clean": "node scripts/clean.js",
     "lint": "eslint .",
     "test": "jest"

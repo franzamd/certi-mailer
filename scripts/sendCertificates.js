@@ -20,16 +20,16 @@ async function sendCertificates() {
     try {
       await sendCertificateByEmail(participant);
       sentCount++;
-      logger.info(`✅ [${participant.id}] Certificate sent to ${participant.email} for ${participant.name}`);
+      logger.info(`✅ Certificate sent to ${participant.email} for ${participant.name} with role ${participant.role}`);
     } catch (error) {
       errorCount++;
       errorIds.push(participant.id);
-      logger.error(`❌ [${participant.id}] Failed to send certificate to ${participant.email} for ${participant.name}: ${error.message}`);
+      logger.error(`❌ Failed to send certificate to ${participant.email} for ${participant.name}: ${error.message}`);
     }
   }
 
   if (errorCount > 0) {
-    logger.error(`Total ${sentCount} Certificates sent successfully, ${errorCount} with errors. IDs with errors: ${errorIds.join(', ')}`);
+    logger.info(`Total ${sentCount} Certificates sent successfully, ${errorCount} with errors. IDs with errors: ${errorIds.join(', ')}`);
   } else {
     logger.info(`Total ${sentCount} Certificates sent successfully!`);
   }
